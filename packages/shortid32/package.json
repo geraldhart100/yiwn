@@ -26,25 +26,9 @@
     "type": "git",
     "url": "https://github.com/billinghamj/shortid32.git"
   },
-  "browser": {
-    "./lib/util/cluster-worker-id.js": "./lib/util/cluster-worker-id-browser.js",
-    "./lib/random/random-byte.js": "./lib/random/random-byte-browser.js"
-  },
   "devDependencies": {
-    "envify": "^3.4.0",
-    "grunt": "^0.4.5",
-    "grunt-browserify": "^3.6.0",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-jshint": "^0.11.1",
-    "grunt-contrib-uglify": "^0.8.1",
-    "grunt-mocha-test": "^0.12.7",
-    "grunt-notify": "^0.4.1",
-    "grunt-open": "^0.2.3",
-    "grunt-release": "^0.12.0",
-    "load-grunt-tasks": "^3.1.0",
-    "time-grunt": "^1.1.0",
     "ava": "^0.24.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }
