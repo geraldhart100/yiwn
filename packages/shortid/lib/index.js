@@ -23,8 +23,13 @@ let counter
 let previousSeconds
 
 /**
+ * @description
+ *
  * Generate unique id
- * Returns string id
+ *
+ * @sig
+ *
+ * shortid :: * -> String
  */
 
 function generate() {

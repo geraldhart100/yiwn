@@ -2,6 +2,12 @@
 
 > Amazingly short non-sequential human-friendly unique id generator.
 
+## Install
+
+```sh
+npm install yiwn-shortid
+```
+
 ## Usage
 
 ```js
