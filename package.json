@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "ramda": "^0.25.0",
-    "ramda-adjunct": "^2.2.0"
+    "ramda-adjunct": "^2.2.0",
+    "yiwn-shortid": "0.0.1",
+    "yiwn-slug": "0.0.1"
   }
 }
