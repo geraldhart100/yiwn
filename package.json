@@ -1,0 +1,17 @@
+{
+  "name": "yiwn",
+  "version": "0.0.1",
+  "description": "Functional utilities",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.24.0"
+  },
+  "dependencies": {
+    "ramda": "^0.25.0",
+    "ramda-adjunct": "^2.2.0",
+    "slug": "^0.9.1"
+  }
+}
