@@ -1,19 +1,18 @@
-'use strict';
+const randomByte = require('./random/random-byte');
 
-var randomByte = require('./random/random-byte');
+function encode (lookup, number) {
+    let loopCounter = 0
+    let done
 
-function encode(lookup, number) {
-    var loopCounter = 0;
-    var done;
-
-    var str = '';
+    let str = ''
 
     while (!done) {
-        str = str + lookup( ( (number >> (4 * loopCounter)) & 0x0f ) | randomByte() );
-        done = number < (Math.pow(16, loopCounter + 1 ) );
-        loopCounter++;
+      str = str + lookup( ( (number >> (4 * loopCounter)) & 0x0f ) | randomByte() )
+      done = number < (Math.pow(16, loopCounter + 1 ) )
+      loopCounter++
     }
-    return str;
+
+    return str
 }
 
-module.exports = encode;
+module.exports = encode

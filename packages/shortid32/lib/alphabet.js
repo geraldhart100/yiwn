@@ -1,83 +1,83 @@
-'use strict';
+const randomFromSeed = require('./random/random-from-seed')
 
-var randomFromSeed = require('./random/random-from-seed');
+let ORIGINAL = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'
+let alphabet
+let previousSeed
 
-var ORIGINAL = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
-var alphabet;
-var previousSeed;
-
-var shuffled;
+let shuffled
 
 function reset() {
-    shuffled = false;
+  shuffled = false
 }
 
-function setCharacters(_alphabet_) {
-    if (!_alphabet_) {
-        if (alphabet !== ORIGINAL) {
-            alphabet = ORIGINAL;
-            reset();
-        }
-        return;
+function setCharacters (_alphabet_) {
+  if (!_alphabet_) {
+    if (alphabet !== ORIGINAL) {
+      alphabet = ORIGINAL
+      reset()
     }
 
-    if (_alphabet_ === alphabet) {
-        return;
-    }
+    return
+  }
 
-    if (_alphabet_.length !== ORIGINAL.length) {
-        throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. You submitted ' + _alphabet_.length + ' characters: ' + _alphabet_);
-    }
+  if (_alphabet_ === alphabet) {
+    return
+  }
 
-    var unique = _alphabet_.split('').filter(function(item, ind, arr){
-       return ind !== arr.lastIndexOf(item);
-    });
+  if (_alphabet_.length !== ORIGINAL.length) {
+    throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. You submitted ' + _alphabet_.length + ' characters: ' + _alphabet_)
+  }
 
-    if (unique.length) {
-        throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. These characters were not unique: ' + unique.join(', '));
-    }
+  const unique = _alphabet_
+    .split('')
+    .filter((item, ind, arr) => ind !== arr.lastIndexOf(item))
 
-    alphabet = _alphabet_;
-    reset();
+  if (unique.length) {
+    throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. These characters were not unique: ' + unique.join(', '))
+  }
+
+  alphabet = _alphabet_
+  reset()
 }
 
-function characters(_alphabet_) {
-    setCharacters(_alphabet_);
-    return alphabet;
+function characters (_alphabet_) {
+  setCharacters(_alphabet_)
+  return alphabet
 }
 
 function setSeed(seed) {
-    randomFromSeed.seed(seed);
-    if (previousSeed !== seed) {
-        reset();
-        previousSeed = seed;
-    }
+  randomFromSeed.seed(seed)
+  if (previousSeed !== seed) {
+    reset()
+    previousSeed = seed
+  }
 }
 
 function shuffle() {
-    if (!alphabet) {
-        setCharacters(ORIGINAL);
-    }
+  if (!alphabet) {
+    setCharacters(ORIGINAL)
+  }
 
-    var sourceArray = alphabet.split('');
-    var targetArray = [];
-    var r = randomFromSeed.nextValue();
-    var characterIndex;
+  const sourceArray = alphabet.split('')
+  const targetArray = []
 
-    while (sourceArray.length > 0) {
-        r = randomFromSeed.nextValue();
-        characterIndex = Math.floor(r * sourceArray.length);
-        targetArray.push(sourceArray.splice(characterIndex, 1)[0]);
-    }
-    return targetArray.join('');
+  let r = randomFromSeed.nextValue()
+  let characterIndex
+
+  while (sourceArray.length > 0) {
+    r = randomFromSeed.nextValue()
+    characterIndex = Math.floor(r * sourceArray.length)
+    targetArray.push(sourceArray.splice(characterIndex, 1)[0])
+  }
+
+  return targetArray.join('')
 }
 
-function getShuffled() {
-    if (shuffled) {
-        return shuffled;
-    }
-    shuffled = shuffle();
-    return shuffled;
+function getShuffled () {
+  if (shuffled) return shuffled
+
+  shuffled = shuffle()
+  return shuffled
 }
 
 /**
@@ -85,14 +85,15 @@ function getShuffled() {
  * @param index
  * @returns {string}
  */
+
 function lookup(index) {
-    var alphabetShuffled = getShuffled();
-    return alphabetShuffled[index];
+  const alphabetShuffled = getShuffled()
+  return alphabetShuffled[index]
 }
 
 module.exports = {
-    characters: characters,
-    seed: setSeed,
-    lookup: lookup,
-    shuffled: getShuffled
-};
+  characters: characters,
+  seed: setSeed,
+  lookup: lookup,
+  shuffled: getShuffled
+}
