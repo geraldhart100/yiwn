@@ -1,6 +1,6 @@
 const randomFromSeed = require('./random/random-from-seed')
 
-let ORIGINAL = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'
+let ORIGINAL = '23456789abcdefghjklmnpqrstuvwxyz'
 let alphabet
 let previousSeed
 

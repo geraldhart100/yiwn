@@ -6,13 +6,13 @@ test.beforeEach(() => alphabet.seed(1))
 
 test('seeds', t => {
   alphabet.seed(1)
-  t.is(alphabet.shuffled(), 'KCYS5WPRGTM7D9E23JZAXQF6UVBH8L4N')
+  t.is(alphabet.shuffled(), 'kcys5wprgtm7d9e23jzaxqf6uvbh8l4n')
 
   alphabet.seed(1234)
-  t.is(alphabet.shuffled(), '9A4K7CS8FHTUVBYJ3DRQ52N6XZLMGPWE', 'unique with each seed')
+  t.is(alphabet.shuffled(), '9a4k7cs8fhtuvbyj3drq52n6xzlmgpwe', 'unique with each seed')
 
   alphabet.seed(1234)
-  t.is(alphabet.shuffled(), '9A4K7CS8FHTUVBYJ3DRQ52N6XZLMGPWE', 'same with a single seed')
+  t.is(alphabet.shuffled(), '9a4k7cs8fhtuvbyj3drq52n6xzlmgpwe', 'same with a single seed')
 })
 
 test('characters', t => {
