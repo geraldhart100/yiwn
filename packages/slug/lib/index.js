@@ -1,8 +1,16 @@
 const slug = require('slug')
 
-const { unary } = require('ramda')
+const { either, isNil, isEmpty } = require('ramda')
 
 slug.defaults.mode = 'rfc3986'
+
+/**
+ * @sig
+ *
+ * stubNull :: * -> Boolean
+ */
+
+const isNilOrEmpty = either(isNil, isEmpty)
 
 /**
  * @description
@@ -11,12 +19,18 @@ slug.defaults.mode = 'rfc3986'
  *
  * @sig
  *
- * slug :: String -> String
+ * slug :: String | Undefined -> String | Undefined
  *
  * @example
  *
  *      slug('I ♥ Unicode') // i-love-unicode
+ *      slug() // null
+ *      slug('') // null
  *
  */
 
-module.exports = unary(slug)
+module.exports = str => {
+  return isNilOrEmpty(str)
+    ? null
+    : slug(str)
+}
