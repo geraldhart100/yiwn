@@ -1,7 +1,7 @@
 import test from 'ava'
 
-import FN from '../lib'
+import FN from '..'
 
-test('R, RA, ...', t => {
+test('yiwn', t => {
   t.truthy(FN)
 })
